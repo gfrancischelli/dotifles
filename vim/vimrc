@@ -1,36 +1,21 @@
+"birbi"
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-" Acces clipboard Paste and Yank
-nnoremap <leader>c "+
 
 set t_Co=256
 set background=dark
 colorscheme cobalt2
 
-" Delicious Operator Mono
-highlight Comment gui=italic
-highlight Comment cterm=italic
-highlight htmlArg gui=italic
-highlight htmlArg cterm=italic
 
+" Basic Options ------------------------------------------------------------ {{{
 
-set antialias                            " 256-color palletes
-set guifont=Operator\ Mono\ Light\ 11    " Sexy font
-set guioptions-=l
-set guioptions-=L
-set guioptions-=r
-set guioptions-=R
-set guioptions-=b
-set guioptions-=T
-set guioptions+=c
-set linespace=5
-
-set lazyredraw                          " Don't redraw while running macros
-
-
-" Basic Options
+" Brazilian keyboard better navigation
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ç l
 
 inoremap jk <ESC>
 set cursorline
@@ -62,6 +47,13 @@ set lazyredraw
 set showbreak=↪
 set colorcolumn=+1
 
+" Move line up and down
+nnoremap - ddlp
+nnoremap = ddkp
+
+" Don't redraw while running macros
+set lazyredraw 
+
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -79,31 +71,36 @@ nnoremap ; :
 let mapleader = ","
 let maplocalleader = "\\"
 
+" }}}
+
 " Selecting {{{
 
-:map <space> viw " select word under cursor
-
-" Brazilian keyboard better navigation
-nnoremap j h
-nnoremap k j
-nnoremap l k
-nnoremap ç l
-
+" select word under cursor
+:map <space> viw "
 
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
 set notimeout
 set ttimeout
 
-
 " Toggle Rainbow Parentheses
 nnoremap <leader>R :RainbowParenthesesToggle  
 
+" VIM User Interfaces ------------------------------------------------------ {{{
 
-" VIM User Interfaces  {{{
+set antialias                            " 256-color palletes
+set guifont=Operator\ Mono\ Light\ 11    " Sexy font
 
+" Italics on comments and html attrs
+highlight Comment gui=italic
+highlight Comment cterm=italic
+highlight htmlArg gui=italic
+highlight htmlArg cterm=italic
 
-" Highlight Whitespace in empty lines
+" Wider line height
+set linespace=5
+
+" Highlight whitespace in empty lines
 highlight BlankLineWhiteSpace ctermbg=white guibg=#9C3E8A
 match BlankLineWhiteSpace /^\s\+\n/
 
@@ -115,23 +112,55 @@ set ts=2 sw=4 et
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 let g:indent_guides_enable_on_vim_startup = 1
+
+" Remove unecessary gvim UI
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+set guioptions-=b
+set guioptions-=T
+set guioptions+=c
 "   }}}
 
+" Visual mode related ------------------------------------------------------ {{{
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Visual mode related
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" " Visual mode pressing * or # searches for the current selection
-" " Super useful! From an idea by Michael Naumann
+" Pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
+" }}}
 
+" Editing  ----------------------------------------------------------------- {{{
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add ; or , at the and of the line 
+" then jumps to a new line below
+inoremap <leader>ç; <esc>A;<esc>o
+inoremap <leader>ç, <esc>A,<esc>o
+
+" Yank to end of line
+nnoremap Y y$
+
+" Reselect last-pasted text
+nnoremap gv `[v`]
+
+" Clean trailing whitespace
+nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z`
+
+" Insert line above or below while in insert mode
+imap <leader>çk <Esc>O
+imap <leader>çl <Esc>o
+
+" Fold tag function  (i.e html)
+nnoremap <leader>ft Vatzf
+
+" Sort CSS properties
+nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
+" }}}
+
+" Text, tab and indent related --------------------------------------------- {{{
 
 " Tabs, spaces and wrappings
 set tabstop=8
@@ -143,27 +172,23 @@ set textwidth=80
 set formatoptions=qrn1j
 set colorcolumn=+1
 
-inoremap <leader>ç; <esc>A;<esc>o
-inoremap <leader>ç, <esc>A,<esc>o
-
 " Leader lt maps to last tab
 let g:lasttab = 1
 nmap <Leader>lt :exe "tabn ".g:lasttab<CR>
 autocmd TabLeave * let g:lasttab = tabpagenr()
 
+" }}}
+
+" Convenience mappings ----------------------------------------------------- {{{
 
 " Opens vimrc in vertical split
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
+" Panic Button
+nnoremap <f9> mzggg?G`z
 
-" That will map Ctrl+C whilst still within insert mode to the line splitting
-" command. You can obviously rebind it if you want, but I think this works
-" really well.
-imap <leader>çk <Esc>O
-imap <leader>çl <Esc>o
-
-
-" Convenience mappings {{{
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
 
 " Fuck you, help key.
 noremap  <F1> :checktime<cr>
@@ -178,33 +203,25 @@ nnoremap s :w<cr>
 " Toggle line numbers
 nnoremap <leader>n :setlocal number!<cr>
 
-" Tabs
+" Tab Navigation
 nnoremap <leader>( :tabprev<cr>
 nnoremap <leader>) :tabnext<cr>
 
 " Wrap
 nnoremap <leader>W :set wrap!<cr>
 
-" Yank to end of line
-nnoremap Y y$
-
-" Reselect last-pasted text
-nnoremap gv `[v`]
-
-" Clean trailing whitespace
-nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z`
-
-" Panic Button
-nnoremap <f9> mzggg?G`z
-
-" Keep the cursor in place while joining lines
-nnoremap J mzJ`z
 " }}}
 
 
-
-" Searching and Moving {{{
+" Searching and Moving ----------------------------------------------------- {{{
 set number
+
+" Brazilian keyboard better navigation
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ç l
+
 " Ack search
 nnoremap <leader>a :Ag
 
@@ -232,7 +249,7 @@ noremap <C-k> <C-w>j
 noremap <C-l> <C-w>k
 noremap ,çç   <C-w>l
 
-" move to beginning / end of line
+" move to beginning | end of line
 nnoremap B ^
 nnoremap E $
 
@@ -243,27 +260,22 @@ nnoremap ^ <nop>
 " Split new vertical buffer
 noremap <leader>v <C-w>v
 
-" Fold tag function  (i.e html)
-nnoremap <leader>ft Vatzf
-
-" Sort CSS properties
-nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " }}}
 
 
-" COPY PASTA {{{
+" COPY PASTA --------------------------------------------------------------- {{{
+
+" Access clipboard Paste and Yank
+nnoremap <leader>c "+
 
 " Reselect pasted text
 nnoremap <leader>v V`]
-
-nnoremap - ddlp
 
 " Toggle auto-indenting for code paste
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 " }}}
-
 
 " NeoComplete Enable
 let g:neocomplete#enable_at_startup = 1
@@ -284,11 +296,12 @@ endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 
 
-
-" NerdTree Settings {{{
+" NerdTree Settings -------------------------------------------------------- {{{
 
 map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && 
+                    \ exists("b:NERDTreeType") &&
+                    \ b:NERDTreeType == "primary") | q | endif
 
 
 let NERDTreeHighlightCursorline = 1
@@ -307,7 +320,7 @@ let NERDTreeMapJumpFirstChild = 'gK'
 
 " }}}
 
-" Backups   {{
+" Backups ------------------------------------------------------------------ {{{
 
 set backup                        " enable backups
 set noswapfile                    " it's 2013, Vim.
@@ -326,11 +339,10 @@ endif
 if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
-" }}
+" }}}
 
 
-
-" Fugitive {{{
+" Fugitive ----------------------------------------------------------------- {{{
 
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
@@ -346,7 +358,7 @@ nnoremap <leader>gl :Shell git gl -18<cr>:wincmd \|<cr>
 " }}}
 
 
-" Ctrl P {{{
+" Ctrl P ------------------------------------------------------------------- {{{
 
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
@@ -356,8 +368,3 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 
 " }}}
-
-"Reload vimrc on save
-
-set modelines=1
-" vim:foldmethod=marker:foldlevel=0
