@@ -1,0 +1,363 @@
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+" Acces clipboard Paste and Yank
+nnoremap <leader>c "+
+
+set t_Co=256
+set background=dark
+colorscheme cobalt2
+
+" Delicious Operator Mono
+highlight Comment gui=italic
+highlight Comment cterm=italic
+highlight htmlArg gui=italic
+highlight htmlArg cterm=italic
+
+
+set antialias                            " 256-color palletes
+set guifont=Operator\ Mono\ Light\ 11    " Sexy font
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+set guioptions-=b
+set guioptions-=T
+set guioptions+=c
+set linespace=5
+
+set lazyredraw                          " Don't redraw while running macros
+
+
+" Basic Options
+
+inoremap jk <ESC>
+set cursorline
+set autoindent
+set showmode
+set showcmd
+set hidden
+set visualbell
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set number
+set norelativenumber
+set laststatus=2
+set history=1000
+set undofile
+set undoreload=10000
+"set list
+"set listchars=tab:▸\ ,eol:¬
+set matchtime=3
+set splitbelow
+set splitright
+set autowrite
+set autoread
+set shiftround
+set title
+set linebreak
+set lazyredraw
+set showbreak=↪
+set colorcolumn=+1
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+":W sudo saves the file
+" (useful for handling thr permission-denied error)
+command W w !sudo tee % > /dev/null
+
+" Toggle line numbers
+nnoremap <leader>n :setlocal number!<cr>
+
+" Just easier :
+nnoremap ; :
+
+" Leader
+let mapleader = ","
+let maplocalleader = "\\"
+
+" Selecting {{{
+
+:map <space> viw " select word under cursor
+
+" Brazilian keyboard better navigation
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ç l
+
+
+" Time out on key codes but not mappings.
+" Basically this makes terminal Vim work sanely.
+set notimeout
+set ttimeout
+
+
+" Toggle Rainbow Parentheses
+nnoremap <leader>R :RainbowParenthesesToggle  
+
+
+" VIM User Interfaces  {{{
+
+
+" Highlight Whitespace in empty lines
+highlight BlankLineWhiteSpace ctermbg=white guibg=#9C3E8A
+match BlankLineWhiteSpace /^\s\+\n/
+
+" Add a bit extra margin to the left
+set foldcolumn=1
+
+" Vim Indent Guides
+set ts=2 sw=4 et
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+let g:indent_guides_enable_on_vim_startup = 1
+"   }}}
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Visual mode related
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" " Visual mode pressing * or # searches for the current selection
+" " Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Tabs, spaces and wrappings
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set wrap
+set textwidth=80
+set formatoptions=qrn1j
+set colorcolumn=+1
+
+inoremap <leader>ç; <esc>A;<esc>o
+inoremap <leader>ç, <esc>A,<esc>o
+
+" Leader lt maps to last tab
+let g:lasttab = 1
+nmap <Leader>lt :exe "tabn ".g:lasttab<CR>
+autocmd TabLeave * let g:lasttab = tabpagenr()
+
+
+" Opens vimrc in vertical split
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+
+" That will map Ctrl+C whilst still within insert mode to the line splitting
+" command. You can obviously rebind it if you want, but I think this works
+" really well.
+imap <leader>çk <Esc>O
+imap <leader>çl <Esc>o
+
+
+" Convenience mappings {{{
+
+" Fuck you, help key.
+noremap  <F1> :checktime<cr>
+inoremap <F1> <esc>:checktime<cr>
+
+" Kill window
+nnoremap K :q<cr>
+
+" Save
+nnoremap s :w<cr>
+
+" Toggle line numbers
+nnoremap <leader>n :setlocal number!<cr>
+
+" Tabs
+nnoremap <leader>( :tabprev<cr>
+nnoremap <leader>) :tabnext<cr>
+
+" Wrap
+nnoremap <leader>W :set wrap!<cr>
+
+" Yank to end of line
+nnoremap Y y$
+
+" Reselect last-pasted text
+nnoremap gv `[v`]
+
+" Clean trailing whitespace
+nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z`
+
+" Panic Button
+nnoremap <f9> mzggg?G`z
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+" }}}
+
+
+
+" Searching and Moving {{{
+set number
+" Ack search
+nnoremap <leader>a :Ag
+
+" Use sane regexes.
+nnoremap / /\v
+vnoremap / /\v
+
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+set gdefault
+
+set scrolloff=3
+set sidescroll=1
+set sidescrolloff=10
+
+" Open new vertical split and switches to it
+nnoremap <leader>w <C-w>v<C-w>l
+
+" Easy buffer navigation
+noremap <C-j> <C-w>h
+noremap <C-k> <C-w>j
+noremap <C-l> <C-w>k
+noremap ,çç   <C-w>l
+
+" move to beginning / end of line
+nnoremap B ^
+nnoremap E $
+
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+
+" Split new vertical buffer
+noremap <leader>v <C-w>v
+
+" Fold tag function  (i.e html)
+nnoremap <leader>ft Vatzf
+
+" Sort CSS properties
+nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+" }}}
+
+
+" COPY PASTA {{{
+
+" Reselect pasted text
+nnoremap <leader>v V`]
+
+nnoremap - ddlp
+
+" Toggle auto-indenting for code paste
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+" }}}
+
+
+" NeoComplete Enable
+let g:neocomplete#enable_at_startup = 1
+
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+set complete=.,w,t
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+   else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+
+
+
+" NerdTree Settings {{{
+
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
+let NERDTreeHighlightCursorline = 1
+let NERDTreeIgnore = ['\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
+                    \ 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json',
+                    \ '.*\.o$', 'db.db', 'tags.bak', '.*\.pdf$', '.*\.mid$',
+                    \ '^tags$',
+                    \ '.*\.bcf$', '.*\.blg$', '.*\.fdb_latexmk$', '.*\.bbl$', '.*\.aux$', '.*\.run.xml$', '.*\.fls$',
+                    \ '.*\.midi$']
+
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDChristmasTree = 1
+let NERDTreeChDirMode = 2
+let NERDTreeMapJumpFirstChild = 'gK'
+
+" }}}
+
+" Backups   {{
+
+set backup                        " enable backups
+set noswapfile                    " it's 2013, Vim.
+
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files"
+
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+" }}
+
+
+
+" Fugitive {{{
+
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>ga :Gadd<cr>
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gco :Gcheckout<cr>
+nnoremap <leader>gci :Gcommit<cr>
+nnoremap <leader>gm :Gmove<cr>
+nnoremap <leader>gr :Gremove<cr>
+nnoremap <leader>gl :Shell git gl -18<cr>:wincmd \|<cr>
+
+" }}}
+
+
+" Ctrl P {{{
+
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+
+" }}}
+
+"Reload vimrc on save
+
+set modelines=1
+" vim:foldmethod=marker:foldlevel=0
