@@ -133,12 +133,12 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 " Add ; or , at the and of the line 
 " then jumps to a new line below
-inoremap <leader>ç; <esc>A;<esc>o
 inoremap <leader>ç, <esc>A,<esc>o
+inoremap <leader>ç; <esc>A;<esc>o
 
 " Move line up and down
-nnoremap <M-k> ddkp
-nnoremap <M-l> ddlp
+nnoremap <C-l> ddlP
+nnoremap <C-k> ddkP
 
 " Yank to end of line
 nnoremap Y y$
