@@ -199,6 +199,10 @@ function! InsertTabWrapper()
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 " }}}
+" 5.    Auto Complete {{{
+" Hyper term fucks my c-x
+inoremap çxl  <C-x>
+" }}}
 " 6.    Text, tab and indent related --------------------------------------- {{{
 
 " Tabs, spaces and wrappings
