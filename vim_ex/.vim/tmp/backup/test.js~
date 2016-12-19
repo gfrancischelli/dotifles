@@ -1,0 +1,29 @@
+'use strict';
+
+function wait() {
+    return new Promise(resolve => {
+        let t = setTimeout( () => {
+            console.log('waited');
+        }, 2500)
+        resolve(t)
+    })
+}
+
+
+function animate() {
+    return Promise.resolve()
+        .then( () => wait() )
+        .then( (result) => {
+            clearTimeout(result);
+            return 'finished'
+        })
+}
+
+
+function p() {
+   return Promise.resolve().then( () => wait() ).then( () => 'finished')
+}
+
+animate().then(r => console.log(r))
+animate()
+animate()

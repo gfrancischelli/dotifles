@@ -1,0 +1,25 @@
+import React, { Component, PropTypes } from 'react';
+
+class TimeLine extends Component {
+  render() {
+    const {posts} = this.props.postList;
+    return (
+      <div>
+        { posts.forEach( post => (
+          <TimeLineItem post={ post } />
+        ))}
+      </div>
+    );
+  }
+}
+
+class TimeLineItem extends Component {
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
+
+export default TimeLine

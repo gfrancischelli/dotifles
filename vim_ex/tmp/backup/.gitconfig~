@@ -1,0 +1,24 @@
+[user]
+	name = Giovani Francischelli
+	email = gifrancischelli@gmail.com
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	up = rebase
+	ci = commit
+	commend = commit --amend --no-edit
+	it = !git init && git commit -m “root” --allow-empty
+	shorty = status --short --branch
+	merc = merge --no-ff
+        glop=”log –pretty=format:’%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s’ –date=short | column -ts ‘|’ | less -r”
+        wow = log --all --graph --decorate --oneline --simplify-by-decoration
+	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+[core]
+	editor = vim
+[ppush]
+	default = matching
+[push]
+	default = matching
+[gui]
+	fontui = -family \"DejaVu Sans\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0

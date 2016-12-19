@@ -1,0 +1,18 @@
+const mongoose = require('mongoose');
+
+const lengthValidator = (val) => val > 4 ? true : false;
+const emailValidator = { validator: /\S+@\S+\.\S+/, msg: 'Unvalid Email' };
+
+const validateUserName = [
+    { validator: lengthValidator, msg: 'Too short' },
+];
+
+let userSchema = new mongoose.Schema({
+    name: { type: String, required: true, validate: validateUserName },
+    email: { type: String, unique: true, required: true, validate: emailValidator },
+    createdOn: { type: Date, 'default': Date.now },
+    modifiedOn: Date,
+    lastLogin: Date,
+});
+
+mongoose.model('User', userSchema);

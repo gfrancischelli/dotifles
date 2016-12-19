@@ -297,6 +297,10 @@ noremap ,çç   <C-w>l
 nnoremap B ^
 nnoremap E $
 
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+
 " Split new vertical buffer
 noremap <leader>v <C-w>v
 

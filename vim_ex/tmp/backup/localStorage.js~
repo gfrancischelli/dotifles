@@ -1,0 +1,7 @@
+const localStorage = new keystone.Storage({
+  adapter: keystone.Storage.Adapters.FS,
+  fs: {
+    path: 'data/files',
+    publicPath: '/files',
+  },
+});

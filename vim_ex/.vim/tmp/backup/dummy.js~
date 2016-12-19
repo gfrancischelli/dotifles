@@ -1,0 +1,13 @@
+const testTweet =  {
+  message: "Something about cats.",
+  gravatar: "1907f3d1a61649f80634324ba37026c6",
+  author: {
+    handle: "@totododoido",
+    name: "Giovanni Francischelli"
+  },
+  likes: 2,
+  retweets: 0,
+  timestamp: "2016-12-14 21:24:37"
+}
+
+export default testTweet

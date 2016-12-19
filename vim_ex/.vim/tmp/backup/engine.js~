@@ -1,0 +1,10 @@
+a = 'birbi';
+
+function fn() {
+    var b
+    var b = 'bu';
+    console.log(b);
+}
+
+fn();
+console.log(a)

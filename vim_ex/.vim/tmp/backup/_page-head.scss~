@@ -1,0 +1,17 @@
+.page-head {
+    position: relative;
+    width: 100%;
+    margin: 0;
+
+    &__img {
+        display: block;
+        width: 100%;
+    }
+
+    // Img Icon Placeholder
+    .placeholder {
+        display: block;
+        margin: 0 auto;
+        height: 100%;
+    }
+}

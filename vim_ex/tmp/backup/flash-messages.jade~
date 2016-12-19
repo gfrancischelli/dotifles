@@ -1,0 +1,11 @@
+mixin flash-messages(messages)
+    if messages
+        #flash-messages.container
+            each message in messages.
+                +flash-message(message,'info')
+            each message in messages.success
+                +flash-message(message,'success')
+            each message in messages.warning
+                +flash-message(message,'warning')
+            each message in messages.danger
+                +flash-message(message,'danger')

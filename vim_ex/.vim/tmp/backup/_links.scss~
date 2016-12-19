@@ -1,0 +1,19 @@
+.c-link {
+    font-weight: bold;
+    color: $primary-red:
+
+    &:after {
+        content: ' ▸';
+        opacity: 0;
+        transition: all 0.3s ease;
+        transform: translateY(5px);
+    }
+
+    &:hover:after {
+        display: inline-block;
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+

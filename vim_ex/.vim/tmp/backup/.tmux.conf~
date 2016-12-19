@@ -1,0 +1,66 @@
+# Reload the config.
+bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
+
+
+
+# Use something easier to type as the prefix.
+set -g prefix C-f
+unbind C-b
+bind C-f send-prefix
+
+# Saner splitting.
+bind v split-window -h -c '#{pane_current_path}'
+bind s split-window -v -c '#{pane_current_path}'
+bind S choose-session
+
+# Pane movement
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+
+# Relax!
+set -sg escape-time 0
+set -sg repeat-time 600
+
+# Shut up.
+set -g quiet on
+
+# Focus
+set -g focus-events
+
+# Mouse
+set -g mouse on
+
+
+
+# Start windows and panes at 1, not 0
+set -g base-index 1
+set -g pane-base-index 1
+
+set-option -g status-position top
+
+set-option -g repeat-time 0
+
+# Removes ESC delay
+set -sg escape-time 0
+
+# List of plugins
+set -g @tpm_plugins '                \
+    caiogondim/maglev                \
+    tmux-plugins/tpm                 \
+    tmux-plugins/tmux-sensible       \
+    tmux-plugins/tmux-resurrect      \
+    tmux-plugins/tmux-continuum      \
+    tmux-plugins/tmux-yank           \
+    tmux-plugins/tmux-pain-control   \
+    tmux-plugins/tmux-copycat        \
+    tmux-plugins/tmux-open           \
+    tmux-plugins/tmux-battery        \
+    tmux-plugins/tmux-cpu            \
+    tmux-plugins/tmux-sidebar        \
+'
+
+run '~/.tmux/plugins/tpm/tpm'
+

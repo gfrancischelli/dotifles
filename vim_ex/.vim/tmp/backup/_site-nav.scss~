@@ -1,0 +1,73 @@
+.c-site-nav {
+    --is-on-header: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: $spacing-small;
+
+    color: $dark-gray;
+    background-color: $base-white;
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2); 
+
+    transition: all 0.3s ease;
+
+    &.is-on-header {
+        position: absolute;
+        color: $base-white;
+        background-color: rgba(0, 0, 0, 0.5); 
+        top: unset;
+        bottom: 0;
+   }
+    
+
+    @include media('>tablet') {
+        padding: $spacing-default;
+    }
+
+    &__list {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    &__item {
+        display: inline;
+    }
+
+    &__item + &__item {
+        margin-left: $spacing-tiny;
+        
+        @include media('>phone') {
+            margin-left: $spacing-large;
+        }
+    }
+
+    &__link {
+        position: relative;
+        color: inherit;    
+        @include media('>tablet') {
+            font-size: $font-large;
+        }
+    }
+
+    &__link:after {
+        content: '';
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: currentColor;
+        
+        transform: scaleX(0);
+        transform-origin: 50% 50%;
+        transition: transform 0.5s ease;
+    }
+
+    &__link:hover:after {
+        transform: scaleX(1);
+    }
+}
+

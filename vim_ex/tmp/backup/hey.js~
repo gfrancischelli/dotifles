@@ -1,0 +1,11 @@
+function Actor(config) {
+    
+    console.log('Actor() right here');
+    
+    const { node, on, action, repeat = 'no' } = config;
+
+    console.log('config.node', config.node);
+}
+
+
+module.exports = Actor;

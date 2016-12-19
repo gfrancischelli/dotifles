@@ -1,0 +1,27 @@
+const mongoose = require('mongoose');
+
+const validateLength = (val) => val.length > 4 ? true : false;
+
+let projectSchema = mongoose.Schema({
+    projectName: { type: String },
+    createdOn: { type: Date, 'default': Date.now},
+    modifiedOn: { type: Date, 'default': Date.now},
+    createdBy: String,
+    tasks: String,
+});
+
+
+projectSchema.path('projectName').validate(function(value, respond) {
+    Project.find({projectName: value }, function(err, projects))
+});
+
+projectSchema.statics.findByUserID = function(userid, callback) {
+    return this.find(
+        { createdBy: userid },
+        '_id projectName',
+        { sort: 'modifiedOn' },
+        callback
+    );
+}
+
+mongoose.model('Project', projectSchema);

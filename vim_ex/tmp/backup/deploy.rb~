@@ -1,0 +1,100 @@
+# config valid only for current version of Capistrano
+lock '3.6.1'
+
+set :application, 'webdoc'
+set :repo_url, 'git@bitbucket.org:gifrancischelli/pinheirinho.git'
+set :deploy_to, "/home/deploy/applications/#{fetch(:application)}"
+set :scm, :git
+set :keep_releases, 5
+append :linked_files, "secrets.json"
+append :linked_dirs, "node_modules", "public/images/galleries", "public/images/news"
+
+task :restart_pm2 do
+    on "deploy@104.236.198.234" do
+        execute "pm2 restart web"
+    end
+end
+
+# namespace :deploy do
+
+#   desc 'Restart application'
+#   task :restart do
+#     invoke 'pm2:restart'
+#   end
+
+#   after :publishing, :restart   
+# end
+
+
+
+
+# require 'json'
+
+# namespace :pm2 do
+
+#   def app_status
+#     within current_path do
+#       ps = JSON.parse(capture :pm2, :jlist, fetch(:app_command))
+#       if ps.empty?
+#         return nil
+#       else
+#         # status: online, errored, stopped
+#         return ps[0]["pm2_env"]["status"]
+#       end
+#     end
+#   end
+
+#   def restart_app
+#     within current_path do
+#       execute :pm2, :restart, fetch(:app_command)
+#     end
+#   end
+
+#   def start_app
+#     within current_path do
+#       execute :pm2, :stop, fetch(:app_command)
+#     end
+#   end
+
+#   desc 'Restart app gracefully'
+#   task :restart do
+#     on roles(:app) do
+#       case app_status
+#       when nil
+#         info 'App is not registerd'
+#         start_app
+#       when 'stopped'
+#         info 'App is stopped'
+#         restart_app
+#       when 'errored'
+#         info 'App has errored'
+#         restart_app
+#       when 'online'
+#         info 'App is online'
+#         restart_app
+#       end
+#     end
+#   end
+
+# end
+
+
+
+# Default value for :format is :airbrussh.
+# set :format, :airbrussh
+
+# You can configure the Airbrussh format using :format_options.
+# These are the defaults.
+# set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
+
+# Default value for :pty is false
+# set :pty, true
+
+# Default value for :linked_files is []
+# append :linked_files, 'config/database.yml', 'config/secrets.yml'
+
+
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+# Default value for keep_releases is 5
