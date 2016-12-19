@@ -229,7 +229,7 @@ autocmd TabLeave * let g:lasttab = tabpagenr()
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-nnoremap <leader>i :vsplit ~/.vim/bundle/vim-illumicolor/colors/illumicolor.vim<cr><cr>
+nnoremap <leader>i :vsplit ~/.vim/bundle/vim-asimov/colors/illumicolor.vim<cr><cr>
 
 " Panic Button
 nnoremap <f9> mzggg?G`z
