@@ -1,6 +1,0 @@
-extends ../../layouts/base.pug
-
-block content
-  div(class="o-wrapper o-wrapper--slim")
-    h1(class="c-heading c-heading--large@ds")= data.post.title
-    div !{data.post.content}

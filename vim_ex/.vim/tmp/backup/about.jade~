@@ -1,6 +1,0 @@
-extends ../layouts/base
-
-block content
-    h1 About
-    p lorem birbi molusco molhokl
-

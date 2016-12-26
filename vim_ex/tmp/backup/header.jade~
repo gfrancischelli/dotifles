@@ -1,5 +1,0 @@
-header(id=header, class="header")
-    nav.navbar
-        a(href='/').btn-nav Home
-        a(href='about').btn-nav About 
-        a(href='users').btn-nav Users

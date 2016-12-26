@@ -1,9 +1,0 @@
-.u-pad {
-    &-left {
-        padding-left: $spacing-default;
-        &-large {
-            padding-left: $spacing-default;
-            // padding-left: $spacing-large;
-        }
-    }
-}

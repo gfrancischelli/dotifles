@@ -1,7 +1,0 @@
-extends layout
-
-block content
-    li: a(href="login") Log In
-    li: a(href="/user/new") Sign In
-    h1= title
-    p Welcome to #{title}

@@ -1,10 +1,10 @@
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 12,
+    fontSize: 16,
 
     // font family with optional fallbacks
-    fontFamily: '"Inconsolata for Powerline Medium", "Operator Mono Medium", Ahamono, "DejaVu Sans Mono", "Lucida Console", monospace',
+    fontFamily: '"Inconsolata", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(248,28,229,0.8)',
@@ -35,10 +35,10 @@ module.exports = {
     // set to `false` if you want to hide the minimize, maximize and close buttons
     // additionally, set to `'left'` if you want them on the left, like in Ubuntu
     // default: `true` on windows and Linux (ignored on macOS)
-    showWindowControls: 'left',
+    showWindowControls: '',
 
     // custom padding (css format, i.e.: `top right bottom left`)
-    padding: '0px 14px',
+    padding: '12px 14px',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
@@ -74,10 +74,10 @@ module.exports = {
     env: {},
 
     // set to false for no bell
-    bell: 'true',
+    bell: 'SOUND',
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false
+    copyOnSelect: true
 
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
@@ -92,12 +92,20 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-      'hyperpunk',
-      'hyper-blink',
+    'hyper-blink',
+    // //  Themes
+    // 'hyper-criollo',
+    'hyperterm-firewatch',
+    'hyper-snazzy',
+    // 'hyperpunk', 
+    // 'hyperterm-oceanic-next',
+    'hyperterm-paste',
+    'hyperterm-cursor',
+    'hyper-statusline',
   ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
   localPlugins: []
-};
+}

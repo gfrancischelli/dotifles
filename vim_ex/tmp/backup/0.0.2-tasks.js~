@@ -1,5 +1,0 @@
-exports.create = {
-    Task: [
-        { title: 'First Task' }    
-    ]
-}

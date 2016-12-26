@@ -1,7 +1,0 @@
-.u-font-white {
-    color: $font-primary;
-}
-
-.u-text-center {
-    text-align: center;
-}

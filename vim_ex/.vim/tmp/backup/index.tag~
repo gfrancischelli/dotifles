@@ -1,3 +1,0 @@
-contact-form
-    form.c-form(ref="sendMailForm")
-        input.c-form__input
