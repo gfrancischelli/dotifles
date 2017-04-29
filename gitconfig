@@ -1,0 +1,41 @@
+[user]
+	email = gifrancischelli@gmail.com
+	name = Giovanni Francischelli
+[core]
+	editor = vim.nox-py2
+[alias]
+	a = add
+	ap = add -p
+	c = commit --verbose
+	cm = commit -m
+	cam = commit --amend --verbose
+
+
+	d = diff
+	ds = diff --stat
+
+	s = status -s
+	co = checkout
+	cob = checkout -b
+
+	rao = remote add origin
+
+	undo = reset --soft HEAD~1
+
+	# How many lines of code today
+        today = diff --shortstat "@{0 day ago}"
+
+	# one-line log
+	l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+	# Log commits containing a word
+	lword = log -S #{word}
+	
+	# Pretty branch status
+	bs = log --all --graph --decorate --oneline --simplify-by-decoration
+	branch-status = log --all --graph --decorate --oneline --simplify-by-decoration
+
+[help]
+	autocorrect = -1
+[push]
+	default = simple
