@@ -19,16 +19,17 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-eunuch'
+Plugin 'suan/vim-instant-markdown' "Automatic markdown preview
+
+" Motion
+Plugin 'easymotion/vim-easymotion'
+Plugin 'jeetsukumaran/vim-indentwise' "Movements based on indent level
+"Plugin 'dimasg/vim-mark' "Highlight and mark workds
 
 " Search
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'haya14busa/incsearch-fuzzy.vim'
 Plugin 'haya14busa/incsearch-easymotion.vim'
-
-" Motion
-Plugin 'easymotion/vim-easymotion'
-Plugin 'jeetsukumaran/vim-indentwise' "Movements based on indent level
-Plugin 'dimasg/vim-mark' "Highlight and mark workds
 
 " Text Objects
 Plugin 'wellle/targets.vim'
@@ -50,9 +51,9 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'lambdatoast/elm.vim'
 
 " Git Support
-Plugin 'kablamo/vim-git-log'
 Plugin 'gregsexton/gitv'
 Plugin 'tpope/vim-fugitive'
+Plugin 'kablamo/vim-git-log'
 
 " Theme / Interface
 Plugin 'airblade/vim-gitgutter'
@@ -139,6 +140,18 @@ nnoremap gv `[v`]
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`
 
+" }}}
+" Hyper.is {{{
+
+" Hyper is awesome but fkin keymaps...
+" God bless Ç
+inoremap çx <C-X>
+inoremap ça <C-A>
+inoremap çk <C-K>
+inoremap çs <C-S>
+inoremap çw <C-W>
+inoremap çr <C-R>
+inoremap çl <C-L>
 " }}}
 " Vim UI {{{
 
@@ -378,4 +391,8 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" }}}
+" Instant Markdown {{{
+let g:instant_markdown_autostart=0
+nnoremap ççmd :InstantMarkdownPreview<CR>
 " }}}
