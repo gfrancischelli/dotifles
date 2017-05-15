@@ -10,15 +10,22 @@
 	cm = commit -m
 	cam = commit --amend --verbose
 
+        wip = commit -m "WIP"
+        werp = reset HEAD^
+
+        glop = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 
 	d = diff
 	ds = diff --stat
+
+        fixup = commit --amend --reuse-message HEAD
 
 	s = status -s
 	co = checkout
 	cob = checkout -b
 
 	rao = remote add origin
+        rebi = rebase -i
 
 	undo = reset --soft HEAD~1
 
@@ -27,6 +34,9 @@
 
 	# one-line log
 	l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+        # list aliases
+        la = "!git config -l | grep alias | cut -c 7-"
 
 	# Log commits containing a word
 	lword = log -S #{word}
