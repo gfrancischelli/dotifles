@@ -48,6 +48,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'Shougo/neocomplete.vim'
 
 " Elm Support
+Plugin 'ElmCast/elm-vim'
 Plugin 'lambdatoast/elm.vim'
 
 " Git Support
@@ -112,6 +113,20 @@ set expandtab
 set wrap
 set textwidth=80
 set formatoptions=qrn1j
+
+" }}}
+" Elm {{{
+
+let g:elm_format_autosave = 1
+let g:elm_setup_keybindings = 0
+
+nnoremap <F3> :ElmFormat<CR>
+
+" Integration with neocomplete
+call neocomplete#util#set_default_dictionary( 
+	\ 'g:neocomplete#sources#omni#input_patterns',
+	\ 'elm',
+	\ '\.')
 
 " }}}
 " Editing {{{
