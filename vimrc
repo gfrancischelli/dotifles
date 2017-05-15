@@ -275,19 +275,6 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|elm-stuff|target|dist)|(\.(swp|ico|git|svn))$'
 
 " }}}
-" UltiSnips {{{
-
-" Trigger configuration
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
-" Default method (variable) does not work. Don't ask me why
-" <tab> already used for completion with Neocomplete.
-inoremap ç<tab> <C-R>=UltiSnips#ExpandSnippetOrJump()<CR>
-inoremap çb <C-R>=UltiSnips#JumpBackwards()<CR>
-
-" }}}
 " Backups {{{
 
 set backup                        " enable backups
@@ -360,7 +347,7 @@ inoremap çb <C-R>=UltiSnips#JumpBackwards()<CR>
 " Neocomplete {{{
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
+let g:acp_enableAtStartup = 1
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
@@ -399,10 +386,9 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
+inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 " AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_auto_select = 0
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
