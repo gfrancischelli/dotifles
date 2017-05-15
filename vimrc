@@ -340,6 +340,23 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " " }}}
+" Instant Markdown {{{
+let g:instant_markdown_autostart=0
+nnoremap Çmd :InstantMarkdownPreview<CR>
+" }}}
+" UltiSnips {{{
+
+" Trigger configuration
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" Default method (variable) does not work. Don't ask me why
+" <tab> already used for completion with Neocomplete.
+inoremap ç<tab> <C-R>=UltiSnips#ExpandSnippetOrJump()<CR>
+inoremap çb <C-R>=UltiSnips#JumpBackwards()<CR>
+
+" }}}
 " Neocomplete {{{
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
@@ -411,8 +428,4 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-" }}}
-" Instant Markdown {{{
-let g:instant_markdown_autostart=0
-nnoremap ççmd :InstantMarkdownPreview<CR>
 " }}}
