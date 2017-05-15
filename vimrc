@@ -160,13 +160,18 @@ nnoremap J mzJ`
 
 " Hyper is awesome but fkin keymaps...
 " God bless Ç
-inoremap çx <C-X>
-inoremap ça <C-A>
-inoremap çk <C-K>
-inoremap çs <C-S>
-inoremap çw <C-W>
-inoremap çr <C-R>
-inoremap çl <C-L>
+inoremap Çx <C-X>
+inoremap Ça <C-A>
+inoremap Çk <C-K>
+inoremap Çs <C-S>
+inoremap Çw <C-W>
+inoremap Çv <C-V>
+inoremap Çt <C-T>
+inoremap Çd <C-D>
+inoremap Çr <C-R>
+inoremap Çl <C-L>
+inoremap Çn <C-N>
+inoremap Çx <C-X>
 " }}}
 " Vim UI {{{
 
